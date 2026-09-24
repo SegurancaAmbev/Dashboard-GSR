@@ -1,0 +1,153 @@
+name: Atualizar Historico GSR Nacional
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Nacional/Base GSR Nacional.csv'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar-historico:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar repositorio
+        uses: actions/checkout@v4
+
+      - name: Gerar fotografia do GSR
+        env:
+          TZ: America/Sao_Paulo
+        run: |
+          python3 <<'PY'
+          import csv
+          import os
+          from datetime import datetime
+
+          BASE = "Nacional/Base GSR Nacional.csv"
+          HISTORICO = "Nacional/Historico GSR.csv"
+
+          EXCLUIDAS = {
+              "Com CD Agudos - AS",
+              "Com CD Campinas - AS",
+              "Com CD Capital - AS",
+              "Com CD R. Preto - AS",
+              "ComCDD PraiaGrd - AS",
+              "ComCDD SJCampos - AS",
+              "NA",
+              ""
+          }
+
+          with open(BASE, "r", encoding="utf-8-sig", newline="") as f:
+              amostra = f.read(4096)
+              f.seek(0)
+
+              try:
+                  dialecto = csv.Sniffer().sniff(amostra, delimiters=",;")
+                  leitor = csv.reader(f, dialect=dialecto)
+              except csv.Error:
+                  leitor = csv.reader(f, delimiter=",")
+
+              linhas = list(leitor)
+
+          if not linhas:
+              raise SystemExit("A Base GSR Nacional.csv esta vazia.")
+
+          cabecalho = linhas[0]
+          dados = linhas[1:]
+
+          if len(cabecalho) <= 16:
+              raise SystemExit("A base nao possui a quantidade esperada de colunas.")
+
+          REG = 0
+          CL = 13
+          U = 16
+
+          ranking = {}
+
+          for linha in dados:
+              if len(linha) <= max(REG, CL, U):
+                  continue
+
+              regional = linha[REG].strip()
+              unidade = linha[U].strip()
+              classificacao = linha[CL].strip().upper()
+
+              if unidade in EXCLUIDAS:
+                  continue
+
+              chave = (regional, unidade)
+
+              if chave not in ranking:
+                  ranking[chave] = {
+                      "Realizados": 0,
+                      "Total": 0
+                  }
+
+              ranking[chave]["Total"] += 1
+
+              if "REALIZ" in classificacao:
+                  ranking[chave]["Realizados"] += 1
+
+          hoje = datetime.now().strftime("%Y-%m-%d")
+
+          registros_antigos = []
+
+          if os.path.exists(HISTORICO):
+              with open(HISTORICO, "r", encoding="utf-8-sig", newline="") as f:
+                  leitor = csv.DictReader(f)
+                  for linha in leitor:
+                      if linha.get("Data") != hoje:
+                          registros_antigos.append(linha)
+
+          novos = []
+
+          for (regional, unidade), valores in sorted(ranking.items()):
+              realizados = valores["Realizados"]
+              total = valores["Total"]
+              percentual = round((realizados / total) * 100, 2) if total else 0
+
+              novos.append({
+                  "Data": hoje,
+                  "Regional": regional,
+                  "Unidade": unidade,
+                  "Realizados": realizados,
+                  "Total": total,
+                  "Percentual": percentual
+              })
+
+          campos = [
+              "Data",
+              "Regional",
+              "Unidade",
+              "Realizados",
+              "Total",
+              "Percentual"
+          ]
+
+          with open(HISTORICO, "w", encoding="utf-8-sig", newline="") as f:
+              escritor = csv.DictWriter(f, fieldnames=campos)
+              escritor.writeheader()
+              escritor.writerows(registros_antigos)
+              escritor.writerows(novos)
+
+          print(f"Fotografia de {hoje} criada com sucesso.")
+          print(f"Unidades registradas: {len(novos)}")
+          PY
+
+      - name: Salvar historico no GitHub
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Nacional/Historico GSR.csv"
+
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteracao no historico."
+          else
+            git commit -m "Atualizar historico diario GSR Nacional"
+            git push
+          fi
