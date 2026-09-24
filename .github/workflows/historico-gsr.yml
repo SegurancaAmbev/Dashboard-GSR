@@ -135,6 +135,11 @@ jobs:
               escritor.writerows(registros_antigos)
               escritor.writerows(novos)
 
+          for item in novos:
+              if item["Regional"].strip().lower() == "geo sp" and
+          item["Unidade"].strip().lower() == "capital":
+                 print("TESTE CAPITAL:", item) 
+                 
           print(f"Fotografia de {hoje} criada com sucesso.")
           print(f"Unidades registradas: {len(novos)}")
           PY
