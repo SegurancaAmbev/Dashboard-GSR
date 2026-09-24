@@ -1,1 +1,99 @@
-Data,Regional,Unidade,Realizados,Total,Percentual
+﻿Data,Regional,Unidade,Realizados,Total,Percentual
+2026-09-24,Geo CO,Brasília,73,79,92.41
+2026-09-24,Geo CO,Cuiabá,33,46,71.74
+2026-09-24,Geo CO,Geo CO,0,1,0.0
+2026-09-24,Geo CO,Geo CO DF,0,3,0.0
+2026-09-24,Geo CO,Manaus,60,73,82.19
+2026-09-24,Geo CO,Rondonópolis,10,16,62.5
+2026-09-24,Geo MG,Alfenas,14,15,93.33
+2026-09-24,Geo MG,Connext 7L,0,1,0.0
+2026-09-24,Geo MG,Geo MG,0,8,0.0
+2026-09-24,Geo MG,Ipatinga,20,24,83.33
+2026-09-24,Geo MG,Minas,45,60,75.0
+2026-09-24,Geo MG,Pouso Alegre,28,30,93.33
+2026-09-24,Geo MG,Poços de Caldas,11,13,84.62
+2026-09-24,Geo MG,Santa Luzia,79,95,83.16
+2026-09-24,Geo MG,Sete Lagoas,17,19,89.47
+2026-09-24,Geo MG,Uberaba,35,39,89.74
+2026-09-24,Geo MG,Uberlândia,19,32,59.38
+2026-09-24,Geo MG,Varginha,24,25,96.0
+2026-09-24,Geo NE,Bahia,82,100,82.0
+2026-09-24,Geo NE,Barreira,0,1,0.0
+2026-09-24,Geo NE,Cabo,19,32,59.38
+2026-09-24,Geo NE,Camaçari,17,23,73.91
+2026-09-24,Geo NE,Campina Grande,20,22,90.91
+2026-09-24,Geo NE,Caruarú,20,28,71.43
+2026-09-24,Geo NE,Feira de Santana,54,54,100.0
+2026-09-24,Geo NE,Geo NE,1,4,25.0
+2026-09-24,Geo NE,Guanambi,14,14,100.0
+2026-09-24,Geo NE,Ilhéus,26,33,78.79
+2026-09-24,Geo NE,Lapa,14,15,93.33
+2026-09-24,Geo NE,Maceió,27,34,79.41
+2026-09-24,Geo NE,Nordeste,63,77,81.82
+2026-09-24,Geo NE,Paraíba,20,33,60.61
+2026-09-24,Geo NE,Sergipe,24,28,85.71
+2026-09-24,Geo NE,Vitória da Conquista,21,22,95.45
+2026-09-24,Geo NO,Belém,29,70,41.43
+2026-09-24,Geo NO,Ceará,13,24,54.17
+2026-09-24,Geo NO,Fortaleza,55,78,70.51
+2026-09-24,Geo NO,Geo NO,0,1,0.0
+2026-09-24,Geo NO,Imperatriz,16,23,69.57
+2026-09-24,Geo NO,Natal,39,58,67.24
+2026-09-24,Geo NO,São Luís,38,52,73.08
+2026-09-24,Geo RJ/ES,CD RJ,61,66,92.42
+2026-09-24,Geo RJ/ES,Campos dos Goytacazes,48,49,97.96
+2026-09-24,Geo RJ/ES,Geo RJ/ES,0,13,0.0
+2026-09-24,Geo RJ/ES,Jacarepaguá,50,61,81.97
+2026-09-24,Geo RJ/ES,Niterói,36,60,60.0
+2026-09-24,Geo RJ/ES,Nova Friburgo,22,26,84.62
+2026-09-24,Geo RJ/ES,Nova Iguaçu,19,22,86.36
+2026-09-24,Geo RJ/ES,Pavuna,21,37,56.76
+2026-09-24,Geo RJ/ES,Petrópolis,23,27,85.19
+2026-09-24,Geo RJ/ES,São Cristovão,37,41,90.24
+2026-09-24,Geo RJ/ES,Transp. Volta Redonda,0,4,0.0
+2026-09-24,Geo RJ/ES,Vitória,41,54,75.93
+2026-09-24,Geo RJ/ES,Volta Redonda,31,35,88.57
+2026-09-24,Geo SP,Agudos,11,19,57.89
+2026-09-24,Geo SP,Araraquara,26,26,100.0
+2026-09-24,Geo SP,Araçatuba,23,28,82.14
+2026-09-24,Geo SP,Barueri,42,59,71.19
+2026-09-24,Geo SP,Campinas,62,71,87.32
+2026-09-24,Geo SP,Capital,58,65,89.23
+2026-09-24,Geo SP,Connext Piracicaba,1,2,50.0
+2026-09-24,Geo SP,Diadema,66,71,92.96
+2026-09-24,Geo SP,Embu,42,51,82.35
+2026-09-24,Geo SP,Geo SP,4,9,44.44
+2026-09-24,Geo SP,Guarulhos,42,50,84.0
+2026-09-24,Geo SP,Jaú,17,18,94.44
+2026-09-24,Geo SP,Jundiaí,32,42,76.19
+2026-09-24,Geo SP,Mauá,32,41,78.05
+2026-09-24,Geo SP,Mogi Mirim,27,34,79.41
+2026-09-24,Geo SP,Mooca - Office,45,47,95.74
+2026-09-24,Geo SP,Norte,34,39,87.18
+2026-09-24,Geo SP,Piracicaba,18,25,72.0
+2026-09-24,Geo SP,Praia Grande,37,51,72.55
+2026-09-24,Geo SP,Presidente Prudente,26,29,89.66
+2026-09-24,Geo SP,Ribeirão Preto,35,40,87.5
+2026-09-24,Geo SP,Suzano,41,42,97.62
+2026-09-24,Geo SP,São José dos Campos,29,29,100.0
+2026-09-24,Geo SP,Taubaté,16,16,100.0
+2026-09-24,Geo SP,Votorantim,29,34,85.29
+2026-09-24,Geo Sul,Blumenau,13,18,72.22
+2026-09-24,Geo Sul,Camboriu,24,30,80.0
+2026-09-24,Geo Sul,Cascavel,14,21,66.67
+2026-09-24,Geo Sul,Caxias do Sul,15,15,100.0
+2026-09-24,Geo Sul,Curitiba,70,93,75.27
+2026-09-24,Geo Sul,Florianópolis,30,40,75.0
+2026-09-24,Geo Sul,Foz do Iguaçu,16,21,76.19
+2026-09-24,Geo Sul,Francisco Beltrão,17,23,73.91
+2026-09-24,Geo Sul,Geo PR/SPI,0,5,0.0
+2026-09-24,Geo Sul,Geo Sul,0,4,0.0
+2026-09-24,Geo Sul,Gravataí,16,21,76.19
+2026-09-24,Geo Sul,Joinville,25,29,86.21
+2026-09-24,Geo Sul,Londrina,44,50,88.0
+2026-09-24,Geo Sul,Paranaguá,13,16,81.25
+2026-09-24,Geo Sul,Pelotas,19,30,63.33
+2026-09-24,Geo Sul,Porto Alegre,47,54,87.04
+2026-09-24,Geo Sul,Santa Cruz do Sul,9,23,39.13
+2026-09-24,Geo Sul,Santa Maria,13,17,76.47
+2026-09-24,Geo Sul,Sapucaia do Sul,41,41,100.0
