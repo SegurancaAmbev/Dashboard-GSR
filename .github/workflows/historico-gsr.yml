@@ -92,7 +92,9 @@ jobs:
 
               if "REALIZ" in classificacao:
                   ranking[chave]["Realizados"] += 1
-
+              elif regional.strip().lower() == "geo sp" and unidade.strip().lower() == "capital":
+                  print("CAPITAL NAO REALIZADO:", linha)
+              
           hoje = datetime.now().strftime("%Y-%m-%d")
 
           registros_antigos = []
