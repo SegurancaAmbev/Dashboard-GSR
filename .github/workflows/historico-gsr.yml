@@ -64,37 +64,67 @@ jobs:
               raise SystemExit("A base nao possui a quantidade esperada de colunas.")
 
           REG = 0
+          ID = 2
           CL = 13
           U = 16
-
+          NM = 17
+          IDS_EXCLUIDOS = {'99847913','99845896','99838187'}
+          GESTOR = cabecalho.index("Gestor Corrigido")
+          DATA_GSR = cabecalho.index("Data Último GSR")
+          DATA_CORTE = datetime(2026,6,1)
+          ids_unicos = {}
           ranking = {}
 
           for linha in dados:
-              if len(linha) <= max(REG, CL, U):
+              if len(linha) <= max(REG, ID, CL, U, NM, GESTOR, DATA_GSR): 
+                  continue
+                  
+              regional = linha[REG].strip()
+              unidade = linha[U].strip()
+              id_colaborador = linha[ID].strip()
+              nome = linha[NM].strip()
+              gestor = linha[GESTOR].strip()
+              data_txt = linha[DATA_GSR].strip()
+              
+              if not id_colaborador or id_colaborador in IDS_EXCLUIDOS or unidade in EXCLUIDAS or unidade == "-" or not regional or regional == "-" or regional == "NA" or not nome or nome == "-" or not gestor or gestor == "0": 
+                  continue
+                  
+              try:
+                  if "/" in data_txt[:10\]:
+                      data_gsr = datetime.strptime(data_txt[:10], "%d/%m/%Y")
+                  else:
+                      data_gsr = datetime.strptime(data_txt[:10], "%Y-%m-%d")
+              except (ValueError, TypeError):
                   continue
 
+              if data_gsr < DATA_CORTE:
+                  continue
+
+              existente = ids_unicos.get(id_colaborador)
+              if existente is None or data_gsr > existente[0\]:
+                  ids_unicos[id_colaborador] = (data_gsr, linha)
+
+          for data_gsr, linha in ids_unicos.values(): 
               regional = linha[REG].strip()
               unidade = linha[U].strip()
               classificacao = linha[CL].strip().upper()
-
-              if unidade in EXCLUIDAS:
+                  
+              if not classificacao or classificacao == "-":
                   continue
-
+                  
               chave = (regional, unidade)
-
-              if chave not in ranking:
+              
+              if chave not in ranking: 
                   ranking[chave] = {
-                      "Realizados": 0,
+                      "Realizados": 0, 
                       "Total": 0
                   }
-
+                  
               ranking[chave]["Total"] += 1
-
-              if "REALIZ" in classificacao:
-                  ranking[chave]["Realizados"] += 1
-              elif regional.strip().lower() == "geo sp" and unidade.strip().lower() == "capital":
-                  print("CAPITAL NAO REALIZADO:", linha)
               
+              if "REALIZ" in classificacao: 
+                  ranking[chave]["Realizados"] += 1                  
+                          
           hoje = datetime.now().strftime("%Y-%m-%d")
 
           registros_antigos = []
