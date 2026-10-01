@@ -99,6 +99,9 @@ jobs:
 
               if data_gsr < DATA_CORTE:
                   continue
+              
+              if data_gsr > datetime(2026, 9, 30):
+                  continue
 
               existente = ids_unicos.get(id_colaborador)
               if existente is None or data_gsr > existente[0]:
@@ -125,7 +128,7 @@ jobs:
               if "REALIZ" in classificacao: 
                   ranking[chave]["Realizados"] += 1                  
                           
-          hoje = datetime.now().strftime("%Y-%m-%d")
+          hoje = "2026-09-30"
 
           registros_antigos = []
 
