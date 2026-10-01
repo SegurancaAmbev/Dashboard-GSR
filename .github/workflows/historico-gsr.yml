@@ -90,7 +90,7 @@ jobs:
                   continue
                   
               try:
-                  if "/" in data_txt[:10\]:
+                  if "/" in data_txt[:10]:
                       data_gsr = datetime.strptime(data_txt[:10], "%d/%m/%Y")
                   else:
                       data_gsr = datetime.strptime(data_txt[:10], "%Y-%m-%d")
@@ -101,7 +101,7 @@ jobs:
                   continue
 
               existente = ids_unicos.get(id_colaborador)
-              if existente is None or data_gsr > existente[0\]:
+              if existente is None or data_gsr > existente```
                   ids_unicos[id_colaborador] = (data_gsr, linha)
 
           for data_gsr, linha in ids_unicos.values(): 
