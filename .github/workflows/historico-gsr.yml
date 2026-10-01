@@ -26,7 +26,7 @@ jobs:
           python3 <<'PY'
           import csv
           import os
-          from datetime import datetime
+          from datetime import datetime, timedelta
 
           BASE = "Nacional-teste/Base GSR Nacional.csv"
           HISTORICO = "Nacional-teste/Historico GSR.csv"
@@ -125,7 +125,7 @@ jobs:
               if "REALIZ" in classificacao: 
                   ranking[chave]["Realizados"] += 1                  
                           
-          hoje = datetime.now().strftime("%Y-%m-%d")
+          hoje_data = datetime.now();hoje = hoje_data.strftime("%Y-%m-%d");mes_anterior = (hoje_data.replace(day=1) - timedelta(days=1)).strftime("%Y-%m");registros_antigos = [];fechamento_ja_existe = False
 
           registros_antigos = []
 
@@ -133,10 +133,12 @@ jobs:
               with open(HISTORICO, "r", encoding="utf-8-sig", newline="") as f:
                   leitor = csv.DictReader(f)
                   for linha in leitor:
-                      if linha.get("Data") != hoje:
-                          registros_antigos.append(linha)
-
-          novos = []
+                      data_linha = str(linha.get("Data",""))
+                      if data_linha.startswith(mes_anterior):
+                          fechamento_ja_existe = True
+                      registros_antigos.append(linha)
+                          
+          if fechamento_ja_existe: raise SystemExit("Fechamento do mês anterior já registrado."); novos = []
 
           for (regional, unidade), valores in sorted(ranking.items()):
               realizados = valores["Realizados"]
