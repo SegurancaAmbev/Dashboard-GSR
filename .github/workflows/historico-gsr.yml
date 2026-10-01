@@ -101,7 +101,7 @@ jobs:
                   continue
 
               existente = ids_unicos.get(id_colaborador)
-              if existente is None or data_gsr > existente```
+              if existente is None or data_gsr > existente[0\]:
                   ids_unicos[id_colaborador] = (data_gsr, linha)
 
           for data_gsr, linha in ids_unicos.values(): 
