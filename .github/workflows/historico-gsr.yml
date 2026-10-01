@@ -125,9 +125,16 @@ jobs:
               if "REALIZ" in classificacao: 
                   ranking[chave]["Realizados"] += 1                  
                           
-          hoje_data = datetime.now();hoje = hoje_data.strftime("%Y-%m-%d");mes_anterior = (hoje_data.replace(day=1) - timedelta(days=1)).strftime("%Y-%m");registros_antigos = [];fechamento_ja_existe = False
+          hoje_data = datetime.now()
+          hoje = hoje_data.strftime("%Y-%m-%d")
+          
+          ultimo_dia_mes_anterior = hoje_data.replace(day=1) - timedelta(days=1)
+          data_fechamento = ultimo_dia_mes_anterior.strftime("%Y-%m-%d")
+
+          mes_anterior = ultimo_dia_mes_anterior.strftime("%Y-%m")
 
           registros_antigos = []
+          fechamento_ja_existe = False
 
           if os.path.exists(HISTORICO):
               with open(HISTORICO, "r", encoding="utf-8-sig", newline="") as f:
@@ -146,7 +153,7 @@ jobs:
               percentual = round((realizados / total) * 100, 2) if total else 0
 
               novos.append({
-                  "Data": hoje,
+                  "Data": data_fechamento,
                   "Regional": regional,
                   "Unidade": unidade,
                   "Realizados": realizados,
