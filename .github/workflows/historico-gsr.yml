@@ -72,6 +72,8 @@ jobs:
           GESTOR = cabecalho.index("Gestor Corrigido")
           DATA_GSR = cabecalho.index("Data Último GSR")
           DATA_CORTE = datetime(2026,6,1)
+          hoje_data = datetime.now()
+          ultimo_dia_mes_anterior = hoje_data.replace(day=1) - timedelta(days=1)
           ids_unicos = {}
           ranking = {}
 
@@ -98,7 +100,10 @@ jobs:
                   continue
 
               if data_gsr < DATA_CORTE:
-                  continue           
+                  continue    
+
+              if data_gsr > ultimo_dia_mes_anterior:
+                  continue
               
               existente = ids_unicos.get(id_colaborador)
               if existente is None or data_gsr > existente[0]:
