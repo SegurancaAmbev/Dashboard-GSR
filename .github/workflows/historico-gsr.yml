@@ -141,11 +141,12 @@ jobs:
                   leitor = csv.DictReader(f)
                   for linha in leitor:
                       data_linha = str(linha.get("Data",""))
-                      if data_linha.startswith(mes_anterior):
+                      if data_linha == data_fechamento:
                           fechamento_ja_existe = True
                       registros_antigos.append(linha)
                           
-          if fechamento_ja_existe: raise SystemExit("Fechamento do mês anterior já registrado."); novos = []
+          if fechamento_ja_existe: print("Fechamento do mês anterior já registrado."); raise SystemExit(0)
+          novos = []
 
           for (regional, unidade), valores in sorted(ranking.items()):
               realizados = valores["Realizados"]
